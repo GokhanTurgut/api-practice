@@ -58,4 +58,6 @@ body {
 
 img {
   border: 6px solid black;
+  margin-bottom: 2rem;
+  max-width: 90%;
 }
