@@ -28,21 +28,22 @@
       let url =
         "https://api.giphy.com/v1/gifs/translate?api_key=qimI2gOwL7y3AHb0B3AeLudfmcvac8MM&s=";
 
+      async function getGIF() {
+        try {
+          const response = await fetch(url + input.value, { mode: "cors" });
+          const gifData = await response.json();
+          massage.classList.add("displayNone");
+          img.classList.remove("displayNone");
+          img.src = gifData.data.images.original.url;
+        } catch (error) {
+          img.classList.add("displayNone");
+          massage.classList.remove("displayNone");
+          console.log(error);
+        }
+      }
+
       searchBtn.addEventListener("click", () => {
-        fetch(url + input.value, { mode: "cors" })
-          .then((response) => {
-            return response.json();
-          })
-          .then((response) => {
-            massage.classList.add("displayNone");
-            img.classList.remove("displayNone");
-            img.src = response.data.images.original.url;
-          })
-          .catch((err) => {
-            img.classList.add("displayNone");
-            massage.classList.remove("displayNone");
-            console.log(err);
-          });
+        getGIF();
       });
     </script>
   </body>
